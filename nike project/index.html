@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Nunito:wght@200;300;400;500;600&display=swap');
+        *{
+            font-family: 'Nunito', sans-serif;
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            outline: none;
+            bottom: none;
+            text-decoration: none;
+            text-transform: capitalize;
+        }
+        header{
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            padding: 20px 9%;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+
+        }
+        header .logo{
+            font-size: 25px;
+            column-rule: #333;
+        }
+
+        header .navbar a{
+            font-size: 20px;
+            column-rule: #666;
+            margin-left: 20px;
+        }
+        header .navbar a:hover{
+            color: #999;
+        }
+        .container{
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            padding: 20px 9%;
+            position: relative;
+            overflow: hidden;
+        }
+        .container .content{
+            flex: 1 1 400px;
+        }
+        .container .image{
+            flex: 1 1 500px;
+            position: relative;
+        }
+        .container  .image .shoes{
+            flex: 1 1 400px;
+            width: 100%;
+            transform: rotate(-35deg);
+            display: none;
+        }
+        .container  .image .shoes.active{
+            display: initial;
+            animation: roset .5s cubic-bezier(.45,1.63, .98, 1.55);
+        }
+        @keyframes roset {
+            0%{
+                transform: rotate(0deg) scale(.7);
+            }
+        }
+
+        .container  .image::before{
+            content: '';
+            position: absolute;
+            top: -50px;
+            left: 100px;
+            border-radius: 50%;
+            height: 450px;
+            width: 450px;
+            background: #eee;
+        }
+        .container .content h3{
+            color: #333;
+            font-size: 50px;
+        }
+        .container .content p{
+            color: #333;
+            font-size: 17px;
+            padding: 5px 0;
+        }
+        .container .content .btn{
+            display: inline-block;
+            margin-top: 10px;
+            font-size: 17px;
+            padding: 9px 40px;
+            background-color: #333;
+            color: #fff;
+        }
+        .container .content .btn:hover{
+            background:  #666;
+        }
+        .container .left,
+        .container .right{
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            height: 50px;
+            width: 50px;
+            border: 2px solid #333;
+            color:#333;
+            line-height: 45px;
+            font-size: 50px;
+            text-align: center;
+            font-weight: bolder;
+            cursor: pointer;
+
+        }
+        .container .left{
+            left: 30px;
+        }
+        .container .right{
+            right: 30px;
+        }
+        .container .left:hover,
+        .container .right:hover{
+            background-color: #333;
+            color: #fff;
+        }
+
+
+
+        </style>
+</head>
+<body>
+    <header>
+        <a href="" class="logo">nike</a>
+        <nav class="navbar">
+            
+            <a href="">home</a>
+            <a href="">about</a>
+            <a href="">category</a>
+            <a href="">products</a>
+            <a href="">blogs</a>
+
+        </nav>
+    </header>
+    <section class="container">
+        <div class="content">
+            <h3>new nike shoes</h3>
+            <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Quasi, commodi adipisci similique voluptates dolorem suscipit.</p>
+            <a href="" class="btn">add to cart</a>
+        </div>
+        <div class="image">
+            <img src="nike1.png" alt="" class="shoes active">
+            <img src="nike (2).png" alt="" class="shoes">
+            <img src="nike.png" alt="" class="shoes">
+            <img src="nike3.png" alt="" class="shoes">
+
+        </div>
+        <div class="left" onclick="prev ()"> < </div>
+        <div class="right" onclick="next ()"> > </div>
+        
+    </section>
+    <script>
+        let shoes = document.querySelectorAll('.shoes')
+        let index = 0;
+        function next (){
+            shoes[index].classList.remove('active')
+            index = (index + 1) % shoes.length
+            shoes[index].classList.add('active')
+        }
+        function prev (){
+            shoes[index].classList.remove('active')
+            index = (index - 1 + shoes.length ) % shoes.length
+            shoes[index].classList.add('active')
+        }
+    </script>
+</body>
+</html>
